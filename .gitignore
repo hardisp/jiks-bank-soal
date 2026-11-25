@@ -1,0 +1,29 @@
+# Environment
+.env
+.env.*
+!.env.example
+
+# Backend
+/backend/vendor
+/backend/node_modules
+/backend/storage/*.key
+
+# Frontend
+/frontend/node_modules
+/frontend/.next
+/frontend/out
+
+# OS / Editor
+.DS_Store
+.idea/
+.vscode/
+*.log
+
+# Deployment secrets
+/deployment/.env
+
+# Persistent container data
+/deployment/data/**
+
+# Keep data directory structure
+!/deployment/data/
