@@ -43,3 +43,9 @@ docker compose \
   exec backend-nginx nginx -t
 ```
 
+## Login Check
+
+```yml
+email: jiksdi
+passw: admin123
+```

@@ -44,3 +44,18 @@ docker compose \
     composer create-project laravel/laravel . "^13.0" --no-interaction
   '
 ```
+
+## Install Filament
+
+```sh
+docker compose \
+  --env-file deployment/.env \
+  -f deployment/compose.yaml \
+  exec --user 1000:1000 backend \
+  sh -lc '
+    export COMPOSER_HOME=/tmp/composer-home
+    export COMPOSER_CACHE_DIR=/tmp/composer-cache
+
+    composer require filament/filament:"^5.12" --no-interaction
+  '
+```
