@@ -27,3 +27,20 @@ mkdir -p \
 sudo chown -R 70:70 deployment/data/postgres
 sudo chmod 700 deployment/data/postgres
 ```
+
+## Install laravel
+
+Running the composer thru `UID/GID 1000:1000`, not a root
+
+```sh
+docker compose \
+  --env-file deployment/.env \
+  -f deployment/compose.yaml \
+  exec --user 1000:1000 backend \
+  sh -lc '
+    export COMPOSER_HOME=/tmp/composer-home
+    export COMPOSER_CACHE_DIR=/tmp/composer-cache
+
+    composer create-project laravel/laravel . "^13.0" --no-interaction
+  '
+```
