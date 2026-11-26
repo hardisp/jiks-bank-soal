@@ -23,3 +23,13 @@ docker compose \
 	-f deployment/compose.yaml \
 	exec postgres sh -c \
 	'psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" -c "SELECT version();"'
+```
+
+## Check PHP Extension
+
+```sh
+docker compose \
+  --env-file deployment/.env \
+  -f deployment/compose.yaml \
+  exec backend php -m
+```

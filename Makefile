@@ -1,4 +1,23 @@
-.PHONY: up-d
+.PHONY: up-d down ps check-mount show-pg-dir-permits help
+docker-config: ## Show the docker compose configuration
+	docker compose \
+	--env-file deployment/.env \
+	-f deployment/compose.yaml \
+	config
+docker-build: ## Build the docker images
+	@if [ "$(opt)" = "" ]; then \
+		echo "Building all images..."; \
+		docker compose \
+		--env-file deployment/.env \
+		-f deployment/compose.yaml \
+		build; \
+	else \
+		docker compose \
+		--env-file deployment/.env \
+		-f deployment/compose.yaml \
+		build $(opt); \
+	fi
+	
 up-d: ## Start the application in detached mode
 	docker compose \
 	--env-file deployment/.env \
@@ -31,7 +50,6 @@ check-mount: ## Check the mount of the postgres data directory (don manually if 
 show-pg-dir-permits: ## Show the permission of the postgres data directory
 	docker run --rm postgres:17-alpine id postgres
 
-.PHONY: help
 help: ## Show available commands
 	@echo ""
 	@echo "  $(BOLD)Make — dev commands$(RESET)"

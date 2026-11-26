@@ -27,3 +27,5 @@
 
 # Keep data directory structure
 !/deployment/data/
+
+temp_note*
