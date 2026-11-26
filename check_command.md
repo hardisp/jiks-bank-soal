@@ -33,3 +33,13 @@ docker compose \
   -f deployment/compose.yaml \
   exec backend php -m
 ```
+
+## Check NGINX
+
+```sh
+docker compose \
+  --env-file deployment/.env \
+  -f deployment/compose.yaml \
+  exec backend-nginx nginx -t
+```
+

@@ -48,6 +48,22 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+  
+  backend-nginx:
+    build:
+      context: ./docker/nginx
+      dockerfile: Dockerfile
+
+    restart: unless-stopped
+
+    ports:
+      - "${NGINX_PORT:-8090}:80"
+
+    volumes:
+      - ../backend:/var/www/html:ro
+
+    depends_on:
+      - backend
 
 volumes:
   postgres_data:
