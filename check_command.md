@@ -46,6 +46,31 @@ docker compose \
 ## Login Check
 
 ```yml
-email: jiksdi
+email: admin
 passw: admin123
+```
+
+## Migration status
+
+```sh
+docker compose \
+  --env-file deployment/.env \
+  -f deployment/compose.yaml \
+  exec backend \
+  php artisan migrate:status
+```
+
+## Table Sanctum
+
+```sh
+docker compose \                                                                                                                  hardi@homeserver
+  --env-file deployment/.env \
+  -f deployment/compose.yaml \
+  exec backend \
+  php artisan tinker --execute="
+    dump([
+        'table_exists' => \Illuminate\Support\Facades\Schema::hasTable('personal_access_tokens'),
+        'columns' => \Illuminate\Support\Facades\Schema::getColumnListing('personal_access_tokens'),
+    ]);
+  "
 ```
